@@ -1,0 +1,121 @@
+[gd_scene load_steps=10 format=2]
+
+[ext_resource path="res://characters/PlayerAnimations/Idle.tres" type="Animation" id=1]
+[ext_resource path="res://characters/PlayerAnimations/Run.tres" type="Animation" id=2]
+[ext_resource path="res://testimages/torso.png" type="Texture" id=3]
+[ext_resource path="res://testimages/waist.png" type="Texture" id=4]
+[ext_resource path="res://testimages/right-leg.png" type="Texture" id=5]
+[ext_resource path="res://testimages/right-arm.png" type="Texture" id=6]
+[ext_resource path="res://testimages/left-arm.png" type="Texture" id=7]
+[ext_resource path="res://testimages/head.png" type="Texture" id=8]
+[ext_resource path="res://testimages/left-leg.png" type="Texture" id=9]
+
+[node name="CharacterSkeleton" type="Node2D"]
+position = Vector2( 1.75, -41.75 )
+
+[node name="left-arm" type="Sprite" parent="."]
+position = Vector2( 9.94596, -37.6846 )
+texture = ExtResource( 7 )
+offset = Vector2( 1.05945, 13.773 )
+
+[node name="left-leg" type="Sprite" parent="."]
+position = Vector2( 8.24069, -0.561867 )
+rotation = 0.0729312
+texture = ExtResource( 9 )
+offset = Vector2( -0.12278, 19.4866 )
+
+[node name="waist" type="Sprite" parent="."]
+texture = ExtResource( 4 )
+
+[node name="torso" type="Sprite" parent="waist"]
+position = Vector2( -0.118927, -2.72237 )
+texture = ExtResource( 3 )
+offset = Vector2( 0.118927, -21.1155 )
+__meta__ = {
+"_edit_bone_": true
+}
+
+[node name="head" type="Sprite" parent="waist/torso"]
+position = Vector2( 0.264866, -41.3191 )
+rotation = 0.0195277
+texture = ExtResource( 8 )
+offset = Vector2( -0.397305, -19.7325 )
+__meta__ = {
+"_edit_bone_": true
+}
+
+[node name="end" type="Position2D" parent="waist/torso/head"]
+position = Vector2( -0.83407, -42.7067 )
+__meta__ = {
+"_edit_bone_": true
+}
+
+[node name="right-arm" type="Sprite" parent="waist/torso"]
+position = Vector2( -9.13787, -34.0352 )
+rotation = 0.0152693
+texture = ExtResource( 6 )
+offset = Vector2( -0.264874, 12.5811 )
+__meta__ = {
+"_edit_bone_": true
+}
+
+[node name="end" type="Position2D" parent="waist/torso/right-arm"]
+position = Vector2( 0.0696907, 27.0532 )
+__meta__ = {
+"_edit_bone_": true
+}
+
+[node name="end2" type="Position2D" parent="waist/torso/right-arm/end"]
+__meta__ = {
+"_edit_bone_": true
+}
+
+[node name="left-arm-remote" type="RemoteTransform2D" parent="waist/torso"]
+position = Vector2( 10.0649, -34.9623 )
+remote_path = NodePath("../../../left-arm")
+__meta__ = {
+"_edit_bone_": true
+}
+
+[node name="end" type="Position2D" parent="waist/torso/left-arm-remote"]
+position = Vector2( 1.125, 28.625 )
+__meta__ = {
+"_edit_bone_": true
+}
+
+[node name="end2" type="Position2D" parent="waist/torso/left-arm-remote/end"]
+__meta__ = {
+"_edit_bone_": true
+}
+
+[node name="right-leg" type="Sprite" parent="waist"]
+position = Vector2( -8.22535, -0.635696 )
+texture = ExtResource( 5 )
+offset = Vector2( -0.250343, 19.706 )
+__meta__ = {
+"_edit_bone_": true
+}
+
+[node name="end" type="Position2D" parent="waist/right-leg"]
+position = Vector2( -2, 42.875 )
+__meta__ = {
+"_edit_bone_": true
+}
+
+[node name="RemoteTransform2D" type="RemoteTransform2D" parent="waist"]
+position = Vector2( 8.24069, -0.561867 )
+rotation = 0.0729312
+remote_path = NodePath("../../left-leg")
+__meta__ = {
+"_edit_bone_": true
+}
+
+[node name="end" type="Position2D" parent="waist/RemoteTransform2D"]
+position = Vector2( 0.503284, 41.1978 )
+__meta__ = {
+"_edit_bone_": true
+}
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+anims/Idle = ExtResource( 1 )
+anims/Run = ExtResource( 2 )
