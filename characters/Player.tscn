@@ -8,6 +8,7 @@ radius = 11.8418
 height = 102.844
 
 [node name="Player" type="KinematicBody2D"]
+collision_layer = 0
 script = ExtResource( 2 )
 
 [node name="Camera2D" type="Camera2D" parent="."]
