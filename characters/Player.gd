@@ -1,10 +1,10 @@
-extends "res://physics/JumperPhysics.gd"
+extends Node2D
 
 func _ready():
 	$CharacterSkeleton/AnimationPlayer.stop()
 
 func _process(_delta):
-	set_jump_input(Input.is_action_pressed("ui_select"))
+	$JumperPhysics.set_jump_input(Input.is_action_pressed("ui_select"))
 	get_x_velocity_from_input()
 
 func get_x_velocity_from_input():
@@ -24,5 +24,4 @@ func get_x_velocity_from_input():
 		$CharacterSkeleton/AnimationPlayer.play("Run")
 		$CharacterSkeleton.set_scale(Vector2(x,1));
 	
-	x *= run_speed
-	set_horizontal_velocity(x)
+	$JumperPhysics.set_horizontal_direction(x)
