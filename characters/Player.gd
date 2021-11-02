@@ -1,7 +1,10 @@
 extends Node2D
 
+var health = 3
+
 func _ready():
 	$CharacterSkeleton/AnimationPlayer.stop()
+	$Hitbox.connect("damaged", self, "on_damage")
 
 func _process(_delta):
 	$JumperPhysics.set_jump_input(Input.is_action_pressed("ui_select"))
@@ -25,3 +28,12 @@ func get_x_velocity_from_input():
 		$CharacterSkeleton.set_scale(Vector2(x,1));
 	
 	$JumperPhysics.set_horizontal_direction(x)
+
+func on_damage(amount: int, damager: Node2D):
+	health -= amount
+	if health <= 0:
+		print("I'm dead.")
+
+	var flash = InvincibilityFlash.new()
+	flash.start_flash($CharacterSkeleton, $Hitbox.invincible_time * 0.9)
+	add_child(flash)
